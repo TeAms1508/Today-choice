@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todays Choice Organic Limited</title>
+
+<link rel="stylesheet" href="./css/styles.css">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<!-- jsPDF for receipt -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+<body>
+
+<header>
+  <h1>Todays Choice Organic Limited</h1>
+  <p>Premium Herbal Wellness Products</p>
+</header>
+
+<section class="products">
+
+  <div class="product">
+    <img src="./images/zobo tea.png" alt="Zobo Tea">
+    <h3>Zobo Tea</h3>
+    <p>₦5,000</p>
+    <input type="number" min="1" value="1" id="qty1">
+    <button onclick="addToCart(1)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/slimming.jpg" alt="Slimming Tea">
+    <h3>Slimming Tea</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty2">
+    <button onclick="addToCart(2)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/flat tummy.jpg" alt="Flat Tummy Tea">
+    <h3>Flat Tummy Tea</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty3">
+    <button onclick="addToCart(3)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/flat tummy & slimming (1).jpg" alt="Flat Tummy & Slimming Tea">
+    <h3>Flat Tummy & Slimming Tea</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty4">
+    <button onclick="addToCart(4)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/soursop.jpg" alt="Soursop Leaf Tea">
+    <h3>Soursop Leaf Tea</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty5">
+    <button onclick="addToCart(5)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/smokers.jpg" alt="Smokers Tea">
+    <h3>Smokers Tea</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty6">
+    <button onclick="addToCart(6)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/arabian.jpg" alt="Arabian Tea">
+    <h3>Arabian Tea</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty7">
+    <button onclick="addToCart(7)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/GINGER.jpg" alt="Ginger Shot">
+    <h3>Ginger Shot</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty8">
+    <button onclick="addToCart(8)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/GREEN DETOX.jpg" alt="Green detox Shot">
+    <h3>Green Detox Shot</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty9">
+    <button onclick="addToCart(9)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="./images/SKIN GLOW.jpg" alt="Skin Glow Shot">
+    <h3>Skin Glow Shot</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty10">
+    <button onclick="addToCart(10)">Add to Cart</button>
+  </div>
+
+<div class="product">
+    <img src="./images/IMMUNE BOOSTER.jpg" alt="Immune Booster Shot">
+    <h3>Immune BoosterShot</h3>
+    <p>₦7,000</p>
+    <input type="number" min="1" value="1" id="qty11">
+    <button onclick="addToCart(11)">Add to Cart</button>
+  </div>
+
+</section>
+
+<section class="order-section">
+
+  <h2>Complete Your Order</h2>
+
+  <ul id="cart-items"></ul>
+<!-- 
+  <label>Select Delivery Location</label>
+  <select id="location" onchange="calculateTotal()">
+    <option value="0">Select Location</option>
+    <option value="2000">Lagos - ₦2000</option>
+    <option value="3000">Abuja - ₦3000</option>
+    <option value="4000">Other States - ₦4000</option>
+  </select> -->
+
+
+  <label>SHIPPING FEES FOR 2KG</label>
+  <select id="location2" onchange="calculateTotal()">
+    <option value="0">Select Location</option>
+    <option value="75000">UK, IRELAND - ₦75000</option>
+    <option value="90500">BENIN REP, GHANA, GAMBIA, SIERRA LEONE, CONGO, LIBERIA - ₦905000</option>
+    <option value="87500">CANADA, USA - ₦87500</option>
+    <option value="100500">TURKEY, MALTA, BELGIUM, NORWAY, SPAIN, SWEEDEN, POLAND, FINLAND, NETHERLANDS
+        , CYPRUS, SWITZERLAND - ₦100500</option>
+    <option value="105000">SOUTH AFRICA, ZIMBABWE, ZAMBIA, BOTSWANA - ₦105000</option>
+    <option value="110500">FRANCE, GERMANY, ITALY, DUBAI, OMAN, ISRAEL, QATAR, SAUDI ARABIA - ₦110500</option>
+    <option value="120000">AUSTRALIA, INDIA, VIETNAM, MALAYSIA, CHINA, PHILIPPINES - ₦120000</option>
+    <option value="130000">BARBADOS, BAHAMAS - ₦130000</option>
+  </select>
+
+  <h3>Delivery Fee: ₦<span id="deliveryFee">0</span></h3>
+  <h2>Total: ₦<span id="total">0</span></h2>
+
+  <input type="text" id="customerName" placeholder="Full Name">
+  <input type="text" id="address" placeholder="Address">
+  <input type="text" id="city" placeholder="City">
+  <input type="text" id="state" placeholder="State">
+  <input type="text" id="country" placeholder="Country">
+  <input type="number" id="postalCode" placeholder="Post Code">
+  <input type="email" id="email" placeholder="Email">
+
+  <button onclick="payNow()">Pay with Paystack</button>
+  <button onclick="downloadReceipt()">Download Receipt</button>
+  <button onclick="orderWhatsApp()">Order via WhatsApp</button>
+
+</section>
+
+<section class="bank-section">
+  <div class="container">
+    <h2 class="section-title">Direct Bank Transfer</h2>
+    <p class="section-subtitle">
+      You can complete your order by transferring to any of the accounts below.
+      Kindly send proof of payment after transfer.
+    </p>
+
+    <div class="bank-grid">
+
+      <!-- Bank 1 -->
+      <div class="bank-card">
+        <h3>FCMB</h3>
+        <p><strong>Account Name:</strong> Todays Choice Beauty Plaza</p>
+        <p><strong>Account Number:</strong>
+          <span id="acc1">3839265014</span>
+        </p>
+        <button onclick="copyAccount('acc1')">Copy Account Number</button>
+      </div>
+
+      <!-- Bank 2 -->
+      <div class="bank-card">
+        <h3>ACCESS BANK</h3>
+        <p><strong>Account Name:</strong> Todays Choice Beauty Plaza</p>
+        <p><strong>Account Number:</strong>
+          <span id="acc2">0030495880</span>
+        </p>
+        <button onclick="copyAccount('acc2')">Copy Account Number</button>
+      </div>
+
+      <!-- Bank 3 -->
+      <div class="bank-card">
+        <h3>PROVIDUS BANK</h3>
+        <p><strong>Account Name:</strong> Todays Choice Beauty Plaza</p>
+        <p><strong>Account Number:</strong>
+          <span id="acc3">1306060640</span>
+        </p>
+        <button onclick="copyAccount('acc3')">Copy Account Number</button>
+      </div>
+
+    </div>
+
+    <div class="transfer-note">
+      <p>
+        After payment, send your payment receipt via WhatsApp:
+        <a href="https://wa.me/2348073555226" target="_blank">
+          Click here to send proof
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer>
+  <p>© 2026 Todays Choice Organic Limited</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
