@@ -1,0 +1,97 @@
+
+/* GENERAL */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+  background: #f4f8f5;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* HEADER */
+.about-header {
+  background: linear-gradient(rgba(27,67,50,0.8), rgba(27,67,50,0.8)),
+              url('images/herbal-bg.jpg') center/cover;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.about-header h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+/* SECTION STYLING */
+section {
+  padding: 60px 0;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1b4332;
+}
+
+/* GRID LAYOUTS */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* CARDS */
+.card, .value-card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.value-card h4 {
+  margin-bottom: 10px;
+}
+
+/* WHY CHOOSE SECTION */
+.why-choose ul {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: auto;
+}
+
+.why-choose li {
+  padding: 10px 0;
+  font-weight: 500;
+}
+
+/* FOOTER */
+footer {
+  background: #1b4332;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 600px) {
+  .about-header h1 {
+    font-size: 26px;
+  }
+
+  section {
+    padding: 40px 0;
+  }
+}
