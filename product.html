@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products | Todays Choice Organic Limited</title>
+
+  <style>
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f9f4;
+    color: #333;
+  }
+
+  /* HEADER */
+  header {
+    background: #2f6d2f;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 14px;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  /* PAGE TITLE */
+  .page-title {
+    text-align: center;
+    padding: 40px 20px 20px;
+  }
+
+  .page-title h2 {
+    font-size: 32px;
+    color: #2f6d2f;
+  }
+
+  .page-title p {
+    color: #666;
+  }
+
+  /* PRODUCT GRID */
+  .product-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .product-content {
+    padding: 20px;
+  }
+
+  .product-content h3 {
+    color: #2f6d2f;
+    margin-bottom: 10px;
+  }
+
+  .product-content p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .product-content ul {
+    padding-left: 18px;
+    margin-top: 10px;
+  }
+
+  .product-content li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  /* Expandable Content */
+  .extra-content {
+    max-height: 100%;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+  }
+
+  .product-card.active .extra-content {
+    max-height: 100%;
+  }
+
+  .toggle-btn {
+    margin-top: 15px;
+    background: #2f6d2f;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .toggle-btn:hover {
+    background: #1e4d1e;
+  }
+
+  /* Scroll Animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #2f6d2f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .page-title h2 {
+      font-size: 24px;
+    }
+
+    .product-card img {
+      height: 200px;
+    }
+
+    .toggle-btn {
+      width: 100%;
+    }
+  }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Todays Choice Organic Limited</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="page-title">
+  <h2>Our Herbal Wellness Products</h2>
+  <p>Natural Solutions for Everyday Health</p>
+</section>
+
+<section class="product-container">
+  <div class="product-grid">
+
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    
+    <!-- PRODUCT 2 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Soursop Leaf Tea">
+      <div class="product-content">
+        <h3>Soursop Leaf Tea</h3>
+        <p>Soursop (Annona muricata) leaves have been used for centuries in traditional medicine, offering numerous benefits:
+</p>
+
+        <div class="extra-content">
+          <p>Health Benefits</p>
+          <ul>
+            <li>Cancer Prevention: Antioxidants and phytochemicals inhibit cancer cell growth.</li>
+            <li>Anti-Inflammatory: Reduces inflammation, alleviating pain and swelling.</li>
+            <li>Antimicrobial: Combats bacterial, viral, and fungal infections.</li>
+            <li>Digestive Aid: Soothes digestive issues, diarrhea, and constipation.</li>
+            <li>Immune System: Boosts immune function, fighting off infections.</li>
+            <li>Anti-Diabetic: Regulates blood sugar levels.</li>
+            <li>Cardiovascular Health: Lowers blood pressure, improves circulation.</li>
+            <li>Neuroprotective: May help prevent neurodegenerative diseases (Alzheimer, Parkinson).</li>
+          </ul>
+          
+          <p>Traditional Uses</p>
+          <ul>
+              <li>Fever Reduction</li>
+              <li>Rheumatism and Arthritis Relief</li>
+              <li>Skin Conditions (eczema, acne)</li>
+              <li>Hair Loss Prevention</li>
+              <li>Menstrual Issues (cramps, bloating)
+              </li>
+          </ul>
+          
+          <p>Preaparation</p>
+          <ul>
+              <li>Tea: Steep 1-2 tablespoons of dried leaves in boiling water.</li>
+              <li>Infusion: Steep leaves in hot water for 5-10 minutes.</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    <!-- PRODUCT 3 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Slimming Tea">
+      <div class="product-content">
+        <h3>Slimming Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+    
+    <!-- PRODUCT 1 -->
+    <div class="product-card reveal">
+      <img src="images/zobo-mix-tea.jpg" alt="Zobo Mix Tea">
+      <div class="product-content">
+        <h3>Zobo Mix Tea</h3>
+        <p>Supports blood circulation and immune strength.</p>
+
+        <div class="extra-content">
+          <p>Premium hibiscus blend formulated to detoxify the body and promote heart health.</p>
+          <ul>
+            <li>Rich in antioxidants</li>
+            <li>Improves digestion</li>
+            <li>Supports cardiovascular health</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+    
+
+    
+    
+    
+
+    <!-- Duplicate and customize for remaining 6 products -->
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Todays Choice Organic Limited. All Rights Reserved.
+</footer>
+
+<script>
+
+// Expandable Description
+document.querySelectorAll(".toggle-btn").forEach(button => {
+  button.addEventListener("click", function() {
+    const card = this.closest(".product-card");
+    card.classList.toggle("active");
+
+    this.textContent = card.classList.contains("active")
+      ? "Read Less"
+      : "Read More";
+  });
+});
+
+// Scroll Reveal
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal");
+
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+</script>
+
+</body>
+</html>
