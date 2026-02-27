@@ -195,6 +195,124 @@
   <div class="story-img"><img style="width: auto;" height="398px" src="./images/shots.jpg" alt=""></div>
 </section>
 
+
+  <!-- ================= REVIEWS SECTION ================= -->
+<section class="reviews-section">
+  <div class="container">
+    <h2>Customer Reviews</h2>
+    <p class="section-subtitle">Trusted by wellness lovers across Nigeria & beyond</p>
+
+    <!-- Review List -->
+    <div id="reviewsList" class="reviews-grid">
+     
+      <!-- Sample Review -->
+      <div class="review-card">
+        <div class="review-header">
+          <img src="images/customer1.jpg" alt="Customer">
+          <div>
+            <h4>Chioma A.</h4>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <p>
+          The herbal detox tea is amazing! I started feeling lighter within a week.
+          Highly recommend Today's Choice Organic.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Add Review Form -->
+    <div class="review-form">
+      <h3>Leave a Review</h3>
+      <form id="reviewForm">
+        <input type="text" id="reviewName" placeholder="Your Name" required>
+
+        <!-- Star Rating -->
+        <div class="star-rating">
+          <span data-value="1">★</span>
+          <span data-value="2">★</span>
+          <span data-value="3">★</span>
+          <span data-value="4">★</span>
+          <span data-value="5">★</span>
+        </div>
+
+        <textarea id="reviewText" placeholder="Write your review..." required></textarea>
+
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+<script>
+let selectedRating = 0;
+
+const stars = document.querySelectorAll('.star-rating span');
+const reviewForm = document.getElementById('reviewForm');
+const reviewsList = document.getElementById('reviewsList');
+
+// Star click logic
+stars.forEach(star => {
+  star.addEventListener('click', () => {
+    selectedRating = star.getAttribute('data-value');
+    stars.forEach(s => s.classList.remove('active'));
+    for (let i = 0; i < selectedRating; i++) {
+      stars[i].classList.add('active');
+    }
+  });
+});
+
+// Load saved reviews
+window.onload = function() {
+  const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+  savedReviews.forEach(addReviewToPage);
+};
+
+reviewForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('reviewName').value;
+  const text = document.getElementById('reviewText').value;
+
+  if (selectedRating == 0) {
+    alert("Please select a rating.");
+    return;
+  }
+
+  const reviewData = { name, text, rating: selectedRating };
+
+  // Save to localStorage
+  let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+  reviews.push(reviewData);
+  localStorage.setItem('reviews', JSON.stringify(reviews));
+
+  addReviewToPage(reviewData);
+
+  reviewForm.reset();
+  stars.forEach(s => s.classList.remove('active'));
+  selectedRating = 0;
+});
+
+function addReviewToPage(review) {
+  const reviewCard = document.createElement('div');
+  reviewCard.classList.add('review-card');
+
+  reviewCard.innerHTML = `
+    <div class="review-header">
+      <img src="images/default-user.png" alt="Customer">
+      <div>
+        <h4>${review.name}</h4>
+        <div class="stars">${'★'.repeat(review.rating)}</div>
+      </div>
+    </div>
+    <p>${review.text}</p>
+  `;
+
+  reviewsList.prepend(reviewCard);
+}
+</script>
+
 <footer class="footer">
   <div><h4>Shop</h4><a href="./shop.html">Organic Products</a></div>
   <div><h4>Today's Choice Organic Ltd.</h4><a href="./about.html">About</a><a href="./contact.css">Contact</a></div>
@@ -204,6 +322,7 @@
 
 </body>
 </html>
+
 
 
 
