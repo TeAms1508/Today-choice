@@ -33,7 +33,7 @@ const products = [
 { id:5, name:"Soursop Tea", price:7000, image:"./images/soursop.jpg"},
 { id:6, name:"Smokers Tea", price:7000, image:"./images/smokers.jpg"},
 { id:7, name:"Full body Wellness", price:20000, image:"./images/flat tummy & slimming (1).jpg"},
-{ id:8, name:"Ginger Shot", price:1000, image:"./images/ginger.jpg"},
+{ id:8, name:"Ginger Shot", price:1000, image:"./images/GINGER.jpg"},
 { id:9, name:"Skin Glow Shot", price:1000, image:"./images/skin glow.jpg"},
 { id:10, name:"Immune Booster Shot", price:1000, image:"./images/Radiant.png"},
 { id:11, name:"Green Detox", price:6000, image:"./images/green detox.jpg"},
@@ -199,4 +199,5 @@ function validateShipping() {
         }
     }
     return true;
+
 }
