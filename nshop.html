@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCOL Products</title>
+<link rel="stylesheet" href="./css/shopstyle.css">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<header>
+    <img src="./images/logo.png" class="logo">
+    <h1>Today's Choice Organic Limited</h1>
+</header>
+
+<section class="product-grid" id="productGrid"></section>
+
+<section class="shipping-section">
+    <h2>Shipping Details</h2>
+
+    <form id="shippingForm">
+
+        <label>Name</label>
+        <input type="text" id="shipName" required>
+
+        <label>Address</label>
+        <input type="text" id="shipAddress" required>
+
+        <label>City</label>
+        <input type="text" id="shipCity" required>
+
+        <label>State</label>
+        <input type="text" id="shipState" required>
+
+        <label>Country</label>
+        <input type="text" id="shipCountry" required>
+
+        <label>Post Code</label>
+        <input type="text" id="shipPost" required>
+
+        <label>Phone</label>
+        <input type="tel" id="shipPhone" required>
+
+        <label>Email</label>
+        <input type="email" id="shipEmail" required>
+
+    </form>
+</section>
+
+<section class="delivery-section">
+    <h2>Delivery Details</h2>
+
+    <select id="deliveryType">
+        <option value="">Select Delivery Type</option>
+        <option value="local">Local (Nigeria)</option>
+        <option value="international">International</option>
+    </select>
+
+    <select id="locationSelect"></select>
+</section>
+
+<section class="summary-section">
+    <h2>Order Summary</h2>
+    <div id="orderSummary"></div>
+    <h3>Total: ₦<span id="totalAmount">0</span></h3>
+
+    <button onclick="payWithPaystack()">Pay with Paystack</button>
+    <!-- <button onclick="showBankDetails()">Bank Transfer</button> -->
+</section>
+
+<section class="invoice-section" id="invoiceSection" style="display:none;">
+    <h2>Invoice</h2>
+    <div id="invoiceContent"></div>
+    <button onclick="downloadPDF()">Download PDF</button>
+</section>
+
+<section class="reviews">
+    <h2>Customer Reviews</h2>
+    <div id="reviewList"></div>
+</section>
+
+<script src="shopscript.js"></script>
+</body>
+</html>
