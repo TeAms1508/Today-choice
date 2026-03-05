@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TCOL Products</title>
-<link rel="stylesheet" href="./css/shopstyle.css">
+<title>Products | TCOL</title>
+
+<link rel="stylesheet" href="nshop.css">
+
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
 
-<header>
-    <img src="./images/logo.png" class="logo">
+<header class="header">
+    <img src="./images/white logo.png" class="logo">
     <h1>Today's Choice Organic Limited</h1>
 </header>
 
@@ -20,39 +22,20 @@
 
 <section class="shipping-section">
     <h2>Shipping Details</h2>
-
     <form id="shippingForm">
-
-        <label>Name</label>
-        <input type="text" id="shipName" required>
-
-        <label>Address</label>
-        <input type="text" id="shipAddress" required>
-
-        <label>City</label>
-        <input type="text" id="shipCity" required>
-
-        <label>State</label>
-        <input type="text" id="shipState" required>
-
-        <label>Country</label>
-        <input type="text" id="shipCountry" required>
-
-        <label>Post Code</label>
-        <input type="text" id="shipPost" required>
-
-        <label>Phone</label>
-        <input type="tel" id="shipPhone" required>
-
-        <label>Email</label>
-        <input type="email" id="shipEmail" required>
-
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="text" id="address" placeholder="Address" required>
+        <input type="text" id="city" placeholder="City" required>
+        <input type="text" id="state" placeholder="State" required>
+        <input type="text" id="country" placeholder="Country" required>
+        <input type="text" id="postcode" placeholder="Post Code" required>
+        <input type="tel" id="phone" placeholder="Phone" required>
+        <input type="email" id="email" placeholder="Email" required>
     </form>
 </section>
 
 <section class="delivery-section">
-    <h2>Delivery Details</h2>
-
+    <h2>Delivery</h2>
     <select id="deliveryType">
         <option value="">Select Delivery Type</option>
         <option value="local">Local (Nigeria)</option>
@@ -64,15 +47,13 @@
 
 <section class="summary-section">
     <h2>Order Summary</h2>
-    <div id="orderSummary"></div>
-    <h3>Total: ₦<span id="totalAmount">0</span></h3>
-
-    <button onclick="payWithPaystack()">Pay with Paystack</button>
-    <!-- <button onclick="showBankDetails()">Bank Transfer</button> -->
+    <div id="summary"></div>
+    <h3>Total: ₦<span id="total">0</span></h3>
+    <button onclick="pay()">Pay with Paystack</button>
+    <!-- <button onclick="bankTransfer()">Bank Transfer</button> -->
 </section>
 
-<section class="invoice-section" id="invoiceSection" style="display:none;">
-    <h2>Invoice</h2>
+<section class="invoice-section" id="invoiceSection">
     <div id="invoiceContent"></div>
     <button onclick="downloadPDF()">Download PDF</button>
 </section>
