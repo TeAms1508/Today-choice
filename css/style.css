@@ -376,6 +376,20 @@ body{background:#fafafa;color:#222;}
   color: #fbc02d;
 }
 
+.nav-links a{
+  background:#1f8a3a;
+  color:white;
+  text-decoration:none;
+  padding:8px 16px;
+  border-radius:6px;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  background:#146b2c;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
   .reviews-section h2 {
@@ -395,4 +409,5 @@ body{background:#fafafa;color:#222;}
 .section{padding:50px 25px;}
 
 }
+
 
