@@ -3,7 +3,7 @@ body{background:#fafafa;color:#222;}
 
 .navbar{display:flex;justify-content:space-between;align-items:center;padding:20px 60px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.05);position:sticky;top:0;z-index:1000;}
 .logo{font-size:22px;font-weight:700;color:#2f6b3f;}
-.nav-links a{margin:0 15px;text-decoration:none;color:#333;font-weight:500;}
+
 .nav-actions span{margin-left:15px;cursor:pointer;}
 
 .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 60px;background:linear-gradient(to right,#f4fbf6,#ffffff);}
@@ -409,5 +409,6 @@ body{background:#fafafa;color:#222;}
 .section{padding:50px 25px;}
 
 }
+
 
 
