@@ -6,6 +6,7 @@
 <title>Products | TCOL</title>
 
 <link rel="stylesheet" href="./css/shopstyle.css">
+    <link rel="stylesheet" href="./css/styles.css">
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -58,6 +59,69 @@
     <button onclick="downloadPDF()">Download PDF</button>
 </section>
 
+      <div class="container">
+    <h2 class="section-title">Direct Bank Transfer</h2>
+    <p class="section-subtitle">
+      You can complete your order by transferring to any of the accounts below.
+      Kindly send proof of payment after transfer.
+    </p>
+
+    <div class="bank-grid">
+
+      <!-- Bank 1 -->
+      <div class="bank-card">
+        <h3>FCMB</h3>
+        <p><strong>Account Name:</strong> Todays Choice Beauty Plaza</p>
+        <p><strong>Account Number:</strong>
+          <span id="acc1">3839265014</span>
+        </p>
+        <button onclick="copyAccount('acc1')">Copy Account Number</button>
+      </div>
+
+      <!-- Bank 2 -->
+      <div class="bank-card">
+        <h3>ACCESS BANK</h3>
+        <p><strong>Account Name:</strong> Todays Choice Beauty Plaza</p>
+        <p><strong>Account Number:</strong>
+          <span id="acc2">0030495880</span>
+        </p>
+        <button onclick="copyAccount('acc2')">Copy Account Number</button>
+      </div>
+
+      <!-- Bank 3 -->
+      <div class="bank-card">
+        <h3>PROVIDUS BANK</h3>
+        <p><strong>Account Name:</strong> Todays Choice Beauty Plaza</p>
+        <p><strong>Account Number:</strong>
+          <span id="acc3">1306060640</span>
+        </p>
+        <button onclick="copyAccount('acc3')">Copy Account Number</button>
+      </div>
+
+    </div>
+
+    <div class="transfer-note">
+      <p>
+        After payment, send your payment receipt via WhatsApp:
+        <a href="https://wa.me/2348073555226" target="_blank">
+          Click here to send proof
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer>
+  <p>© 2026 Today's Choice Organic Limited</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+    </html>
+
 <section class="reviews">
     <h2>Customer Reviews</h2>
     <div id="reviewList"></div>
@@ -66,5 +130,6 @@
 <script src="shopscript.js"></script>
 </body>
 </html>
+
 
 
