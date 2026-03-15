@@ -461,7 +461,17 @@ background:#0f7a2b;
   }
 }
 
+@media (max-width:768px){
 
+.soursop-wrapper{
+grid-template-columns:1fr;
+}
+
+.soursop-gallery img{
+height:160px;
+}
+
+}
 
 @media(max-width:900px){
 .hero{grid-template-columns:1fr;}
