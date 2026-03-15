@@ -108,6 +108,70 @@ body{background:#fafafa;color:#222;}
 
 .product-card button:hover {
   background: #14532d;
+}.soursop-highlight{
+background:#f7fbf7;
+padding:40px 20px;
+}
+
+.soursop-wrapper{
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:start;
+}
+
+.soursop-gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.soursop-gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.soursop-text h2{
+color:#0b6623;
+margin-bottom:10px;
+}
+
+.soursop-text .intro{
+font-size:16px;
+margin-bottom:15px;
+line-height:1.6;
+}
+
+.soursop-text h3{
+margin-top:18px;
+color:#0b6623;
+}
+
+.soursop-text ul{
+padding-left:18px;
+line-height:1.6;
+}
+
+.soursop-cta{
+margin-top:20px;
+}
+
+.soursop-cta a{
+background:#0b6623;
+color:white;
+padding:12px 22px;
+text-decoration:none;
+border-radius:6px;
+font-weight:bold;
+display:inline-block;
+}
+
+.soursop-cta a:hover{
+background:#0f7a2b;
 }
 
 /* MOBILE OPTIMIZATION */
