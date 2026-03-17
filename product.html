@@ -538,7 +538,7 @@ Cart (<span id="cartCount">0</span>)
 </section>
 
 
-<script>
+<!-- <script>
 
     
 function setStep(step){
@@ -819,6 +819,309 @@ showReviews()
 
 
 
+function openImg(src){
+document.getElementById("imgModal").style.display="block"
+document.getElementById("modalImg").src=src
+}
+
+function closeImg(){
+document.getElementById("imgModal").style.display="none"
+}
+
+</script> -->
+
+
+  <script>
+
+// STEP CONTROL
+function setStep(step){
+document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"))
+document.getElementById(step).classList.add("active")
+}
+
+// PRODUCTS
+const products=[
+{name:"Flat Tummy Tea", price:10000, desc:"Herbal cleansing tea"},
+{name:"Slimming Tea", price:10000, desc:"Weight loss support tea"},
+{name:"Zobo Mix", price:5000, desc:"Rich antioxidant drink"},
+{name:"Arabian Tea", price:7000, desc:"Spiced wellness tea"},
+{name:"Full body Wellness", price:30000, desc:"Full detox tea"},
+{name:"Soursop Tea", price:7000, desc:"Packaged soursop tea"},
+{name:"Soursop Leaves", isWeight:true, desc:"Fresh organic soursop leaves sold by weight"},
+{name:"Smokers Tea", price:7000},
+{name:"Ginger Shot", price:1000},
+{name:"Green Detox Shot", price:1000},
+{name:"Skin Glow Shot", price:1000},
+{name:"Immune Booster Shot", price:1000}
+]
+
+let cart={}
+let invoiceCount=1
+
+// DELIVERY
+const delivery={
+local:{
+"Lagos":2000,
+"Abuja":2500,
+"Kano":3000,
+"Rivers":3000
+},
+international:{
+"UK":125000,
+"USA":87500,
+"Canada":87500
+}
+}
+
+// LOAD PRODUCTS
+function loadProducts(){
+let box=document.getElementById("products")
+box.innerHTML=""
+
+products.forEach((p,i)=>{
+
+box.innerHTML+=`
+
+<div class="product">
+
+<img src="./images/p${i+1}.jpg" onclick="openImg(this.src)">
+
+<h4>${p.name}</h4>
+
+<p id="price-${i}">₦${p.price || 0}</p>
+
+<div class="desc">${p.desc || ""}</div>
+
+${
+p.isWeight ? `
+
+<div class="weight-box">
+
+<input type="number" placeholder="Enter weight" id="weight-${i}" oninput="calcWeight(${i})">
+
+<select id="unit-${i}" onchange="calcWeight(${i})">
+<option value="g">g</option>
+<option value="kg">kg</option>
+</select>
+
+<div class="preset-btns">
+<button onclick="setWeight(${i},100,'g')">100g</button>
+<button onclick="setWeight(${i},250,'g')">250g</button>
+<button onclick="setWeight(${i},500,'g')">500g</button>
+<button onclick="setWeight(${i},1,'kg')">1kg</button>
+</div>
+
+</div>
+
+` :
+
+`<input type="number" min="0" value="0" onchange="add(${i},this.value)">`
+
+}
+
+</div>
+
+`
+
+})
+
+}
+loadProducts()
+
+// NORMAL ADD
+function add(id,qty){
+qty=parseInt(qty)
+if(qty>0){
+cart[id]=qty
+}else{
+delete cart[id]
+}
+update()
+}
+
+// PRESET BUTTON
+function setWeight(id,value,unit){
+document.getElementById(`weight-${id}`).value=value
+document.getElementById(`unit-${id}`).value=unit
+calcWeight(id)
+}
+
+// WEIGHT CALCULATION
+function calcWeight(id){
+
+let weight=document.getElementById(`weight-${id}`).value
+let unit=document.getElementById(`unit-${id}`).value
+
+if(!weight || weight<=0){
+delete cart[id]
+update()
+return
+}
+
+let grams = unit==="kg" ? weight*1000 : parseFloat(weight)
+
+let price=0
+
+if(grams<=100) price=2500
+else if(grams<=250) price=5500
+else if(grams<=500) price=10000
+else if(grams<=1000) price=20000
+else price=(grams/1000)*20000
+
+cart[id]={
+qty:1,
+price:price,
+grams:grams
+}
+
+document.getElementById(`price-${id}`).innerText="₦"+price.toLocaleString()
+
+update()
+}
+
+// UPDATE CART
+function update(){
+
+setStep("stepCart")
+
+let summary=""
+let total=0
+let count=0
+
+for(let id in cart){
+
+let p=products[id]
+let item=cart[id]
+let sub=0
+
+if(typeof item==="object"){
+sub=item.price
+let label = item.grams>=1000 ? (item.grams/1000)+"kg" : item.grams+"g"
+summary+=`${p.name} (${label}) = ₦${sub}<br>`
+}else{
+sub=p.price*item
+summary+=`${p.name} x${item} = ₦${sub}<br>`
+count+=item
+}
+
+total+=sub
+
+}
+
+// DELIVERY
+let type=document.getElementById("deliveryType").value
+let loc=document.getElementById("location").value
+
+if(type && loc){
+let fee=delivery[type][loc]
+total+=fee
+summary+=`Delivery (${loc}) = ₦${fee}`
+}
+
+// DISPLAY
+document.getElementById("orderSummary").innerHTML=summary
+document.getElementById("total").innerText=total
+document.getElementById("cartCount").innerText=count
+
+}
+
+// DELIVERY CHANGE
+document.getElementById("deliveryType").onchange=function(){
+
+let type=this.value
+let loc=document.getElementById("location")
+loc.innerHTML=""
+
+for(let l in delivery[type]){
+loc.innerHTML+=`<option>${l}</option>`
+}
+
+update()
+
+}
+
+// PAYMENT
+function pay(){
+setStep("stepPayment")
+
+let total=document.getElementById("total").innerText
+
+PaystackPop.setup({
+key:"pk_test_xxxxxxxx",
+email:document.getElementById("email").value,
+amount:total*100,
+currency:"NGN",
+
+callback:function(){
+generateInvoice()
+addReview()
+sendWhatsapp()
+}
+
+}).openIframe()
+}
+
+// BANK TRANSFER
+function bankTransfer(){
+generateInvoice()
+sendWhatsapp()
+}
+
+// INVOICE
+function generateInvoice(){
+
+setStep("stepInvoice")
+
+let invoice="TCOL-2026-"+String(invoiceCount).padStart(4,'0')
+invoiceCount++
+
+let summary=document.getElementById("orderSummary").innerHTML
+
+document.getElementById("invoiceBox").style.display="block"
+
+document.getElementById("invoice").innerHTML=
+
+`<img src="./images/logo.png" width="70">
+<h3>Invoice: ${invoice}</h3>
+<p>${name.value}<br>${address.value}<br>${city.value}</p>
+${summary}
+<h3>Total: ₦${total.innerText}</h3>`
+
+}
+
+// PDF
+function downloadPDF(){
+const {jsPDF}=window.jspdf
+let doc=new jsPDF()
+doc.text(document.getElementById("invoice").innerText,10,10)
+doc.save("receipt.pdf")
+}
+
+// WHATSAPP
+function sendWhatsapp(){
+let phone="2348073555226"
+let message=document.getElementById("orderSummary").innerText
+let url=`https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+window.open(url)
+}
+
+// REVIEWS
+function addReview(){
+let r=JSON.parse(localStorage.getItem("reviews"))||[]
+r.push("⭐⭐⭐⭐⭐ Verified Purchase")
+localStorage.setItem("reviews",JSON.stringify(r))
+showReviews()
+}
+
+function showReviews(){
+let r=JSON.parse(localStorage.getItem("reviews"))||[]
+let box=document.getElementById("reviewList")
+box.innerHTML=""
+r.forEach(v=>{ box.innerHTML+=`<p>${v}</p>` })
+}
+showReviews()
+
+// IMAGE MODAL
 function openImg(src){
 document.getElementById("imgModal").style.display="block"
 document.getElementById("modalImg").src=src
