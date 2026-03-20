@@ -180,8 +180,23 @@ transform:translateY(-50%);
 .step:last-child::after{
 display:none;
 }
-  
 
+  .delivery-note{
+background:#fff3cd;
+color:#856404;
+padding:12px 20px;
+margin:15px 20px;
+border-radius:6px;
+font-size:14px;
+border:1px solid #ffeeba;
+}
+
+.delivery-note p{
+margin:0;
+text-align:center;
+}
+
+  
 .summary{
 background:white;
 padding:20px;
@@ -356,6 +371,20 @@ h2{
 font-size:20px;
 text-align:center;
 }
+
+  @media (max-width:600px){
+
+.delivery-note{
+margin:10px;
+padding:10px;
+font-size:13px;
+}
+
+.delivery-note p{
+text-align:center;
+}
+
+  }
     
   }
 
@@ -451,12 +480,15 @@ Cart (<span id="cartCount">0</span>)
 
 <select id="deliveryType">
 <option value="">Select Delivery</option>
-<option value="local">Local (Nigeria)</option>
+<!--<option value="local">Local (Nigeria)</option>-->
 <option value="international">International</option>
 </select>
 
 <select id="location"></select>
 
+  <div class="delivery-note">
+<p>Charges for nationwide deliveries apply.</p>
+</div>
 
 <h3>Order Summary</h3>
 
