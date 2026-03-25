@@ -1394,12 +1394,12 @@ Total: ${format($("total").innerText)}
 /* =========================
    REVIEWS
 ========================= */
-function addReview(){
-  const r = JSON.parse(localStorage.getItem("reviews")) || []
-  r.push("⭐⭐⭐⭐⭐ Verified Purchase")
-  localStorage.setItem("reviews", JSON.stringify(r))
-  showReviews()
-}
+// function addReview(){
+//   const r = JSON.parse(localStorage.getItem("reviews")) || []
+//   r.push("⭐⭐⭐⭐⭐ Verified Purchase")
+//   localStorage.setItem("reviews", JSON.stringify(r))
+//   showReviews()
+// }
 
 function showReviews(){
   const r = JSON.parse(localStorage.getItem("reviews")) || []
