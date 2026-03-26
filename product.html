@@ -197,6 +197,55 @@ margin:0;
 text-align:center;
 }
 
+.cart-panel{
+  position:fixed;
+  right:-400px;
+  top:0;
+  width:350px;
+  height:100%;
+  background:#fff;
+  box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+  transition:0.3s;
+  z-index:999;
+  display:flex;
+  flex-direction:column;
+}
+
+.cart-panel.open{
+  right:0;
+}
+
+.cart-header, .cart-footer{
+  padding:15px;
+  border-bottom:1px solid #eee;
+}
+
+.cart-items{
+  flex:1;
+  overflow:auto;
+  padding:10px;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  border-bottom:1px solid #eee;
+  padding-bottom:10px;
+}
+
+.cart-toggle{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#000;
+  color:#fff;
+  padding:10px 15px;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+}
+  
   
 .summary{
 background:white;
@@ -561,6 +610,26 @@ text-align:center;
 
 </div>
 
+
+  <!-- CART PANEL -->
+<div id="cartPanel" class="cart-panel">
+  <div class="cart-header">
+    <h3>Cart (<span id="cartCount">0</span>)</h3>
+    <button onclick="toggleCart()">✖</button>
+  </div>
+
+  <div id="cartItems"></div>
+
+  <div class="cart-footer">
+    <h3>Total: ₦<span id="total">0</span></h3>
+    <button onclick="clearCart()">Clear Cart</button>
+  </div>
+</div>
+
+<button class="cart-toggle" onclick="toggleCart()">
+  🛒 <span id="cartCount">0</span>
+</button>
+  
 <div class="cart-box">
 Cart (<span id="cartCount">0</span>)
 </div>
@@ -1199,38 +1268,65 @@ function calcWeight(id){
 ========================= */
 function updateCart(){
 
-  setStep("stepCart")
-
   let summary = ""
   let total = 0
   let count = 0
+  let itemsHTML = ""
 
   for(const id in state.cart){
-  const p = products[id]
-  const item = state.cart[id]
+    const p = products[id]
+    const item = state.cart[id]
 
-  let sub = 0
-
-  if(typeof item === "object"){
-    sub = item.price
-
+    let sub = 0
     let label = ""
-    if(item.grams){
-      label = item.grams >= 1000 ? (item.grams/1000)+"kg" : item.grams+"g"
-    } else if(item.label){
-      label = item.label
+
+    if(typeof item === "object"){
+      sub = item.price
+
+      if(item.grams){
+        label = item.grams >= 1000 ? (item.grams/1000)+"kg" : item.grams+"g"
+      } else if(item.label){
+        label = item.label
+      }
+
+      summary += `${p.name} (${label}) = ${format(sub)}<br>`
+      count += 1
+
+      itemsHTML += `
+        <div class="cart-item">
+          <div>
+            <strong>${p.name}</strong><br>
+            <small>${label}</small>
+          </div>
+          <div>
+            ${format(sub)}<br>
+            <button onclick="removeItem(${id})">❌</button>
+          </div>
+        </div>
+      `
+
+    } else {
+      sub = p.price * item
+      summary += `${p.name} x${item} = ${format(sub)}<br>`
+      count += item
+
+      itemsHTML += `
+        <div class="cart-item">
+          <div>
+            <strong>${p.name}</strong><br>
+            <small>Qty: ${item}</small>
+          </div>
+          <div>
+            ${format(sub)}<br>
+            <button onclick="removeItem(${id})">❌</button>
+          </div>
+        </div>
+      `
     }
 
-    summary += `${p.name} (${label}) = ${format(sub)}<br>`
-    count += 1
-  } else {
-    sub = p.price * item
-    summary += `${p.name} x${item} = ${format(sub)}<br>`
-    count += item
+    total += sub
   }
 
-  total += sub
-}
   // Delivery
   const type = $("deliveryType")?.value
   const loc = $("location")?.value
@@ -1244,15 +1340,10 @@ function updateCart(){
   $("orderSummary").innerHTML = summary
   $("total").innerText = total
   $("cartCount").innerText = count
+  $("cartItems").innerHTML = itemsHTML
 
+  saveCart()
 }
-
-function copyAccount(id){
-  const text = document.getElementById(id).innerText
-  navigator.clipboard.writeText(text)
-  alert("Account number copied: " + text)
-}
-
 
 
 /* =========================
@@ -1412,6 +1503,24 @@ function showReviews(){
   r.forEach(v => box.innerHTML += `<p>${v}</p>`)
 }
 
+
+  function toggleCart(){
+  $("cartPanel").classList.toggle("open")
+}
+
+  function clearCart(){
+  state.cart = {}
+  updateCart()
+  saveCart()
+}
+
+  function removeItem(id){
+  delete state.cart[id]
+  updateCart()
+  saveCart()
+}
+  
+
 /* =========================
    IMAGE MODAL
 ========================= */
@@ -1424,12 +1533,24 @@ function closeImg(){
   $("imgModal").style.display = "none"
 }
 
+function saveCart(){
+  localStorage.setItem("cart", JSON.stringify(state.cart))
+}
+
+  function loadCart(){
+  const saved = JSON.parse(localStorage.getItem("cart"))
+  if(saved){
+    state.cart = saved
+    updateCart()
+  }
+}
+  
 /* =========================
    INIT
 ========================= */
 loadProducts()
 showReviews()
-
+loadCart()
 </script>
 
 
