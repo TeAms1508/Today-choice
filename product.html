@@ -824,6 +824,7 @@ Cart (<span id="cartCount">0</span>)
 
 
 
+
 <script>
 /* =========================
    GLOBAL STATE
@@ -1268,65 +1269,38 @@ function calcWeight(id){
 ========================= */
 function updateCart(){
 
+  setStep("stepCart")
+
   let summary = ""
   let total = 0
   let count = 0
-  let itemsHTML = ""
 
   for(const id in state.cart){
-    const p = products[id]
-    const item = state.cart[id]
+  const p = products[id]
+  const item = state.cart[id]
 
-    let sub = 0
+  let sub = 0
+
+  if(typeof item === "object"){
+    sub = item.price
+
     let label = ""
-
-    if(typeof item === "object"){
-      sub = item.price
-
-      if(item.grams){
-        label = item.grams >= 1000 ? (item.grams/1000)+"kg" : item.grams+"g"
-      } else if(item.label){
-        label = item.label
-      }
-
-      summary += `${p.name} (${label}) = ${format(sub)}<br>`
-      count += 1
-
-      itemsHTML += `
-        <div class="cart-item">
-          <div>
-            <strong>${p.name}</strong><br>
-            <small>${label}</small>
-          </div>
-          <div>
-            ${format(sub)}<br>
-            <button onclick="removeItem(${id})">❌</button>
-          </div>
-        </div>
-      `
-
-    } else {
-      sub = p.price * item
-      summary += `${p.name} x${item} = ${format(sub)}<br>`
-      count += item
-
-      itemsHTML += `
-        <div class="cart-item">
-          <div>
-            <strong>${p.name}</strong><br>
-            <small>Qty: ${item}</small>
-          </div>
-          <div>
-            ${format(sub)}<br>
-            <button onclick="removeItem(${id})">❌</button>
-          </div>
-        </div>
-      `
+    if(item.grams){
+      label = item.grams >= 1000 ? (item.grams/1000)+"kg" : item.grams+"g"
+    } else if(item.label){
+      label = item.label
     }
 
-    total += sub
+    summary += `${p.name} (${label}) = ${format(sub)}<br>`
+    count += 1
+  } else {
+    sub = p.price * item
+    summary += `${p.name} x${item} = ${format(sub)}<br>`
+    count += item
   }
 
+  total += sub
+}
   // Delivery
   const type = $("deliveryType")?.value
   const loc = $("location")?.value
@@ -1340,10 +1314,15 @@ function updateCart(){
   $("orderSummary").innerHTML = summary
   $("total").innerText = total
   $("cartCount").innerText = count
-  $("cartItems").innerHTML = itemsHTML
 
-  saveCart()
 }
+
+function copyAccount(id){
+  const text = document.getElementById(id).innerText
+  navigator.clipboard.writeText(text)
+  alert("Account number copied: " + text)
+}
+
 
 
 /* =========================
@@ -1503,24 +1482,6 @@ function showReviews(){
   r.forEach(v => box.innerHTML += `<p>${v}</p>`)
 }
 
-
-  function toggleCart(){
-  $("cartPanel").classList.toggle("open")
-}
-
-  function clearCart(){
-  state.cart = {}
-  updateCart()
-  saveCart()
-}
-
-  function removeItem(id){
-  delete state.cart[id]
-  updateCart()
-  saveCart()
-}
-  
-
 /* =========================
    IMAGE MODAL
 ========================= */
@@ -1533,28 +1494,14 @@ function closeImg(){
   $("imgModal").style.display = "none"
 }
 
-function saveCart(){
-  localStorage.setItem("cart", JSON.stringify(state.cart))
-}
-
-  function loadCart(){
-  const saved = JSON.parse(localStorage.getItem("cart"))
-  if(saved){
-    state.cart = saved
-    updateCart()
-  }
-}
-  
 /* =========================
    INIT
 ========================= */
 loadProducts()
 showReviews()
-loadCart()
+
 </script>
 
-
-  
 
 </body>
 </html>
